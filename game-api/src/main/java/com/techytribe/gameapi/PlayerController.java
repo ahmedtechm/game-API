@@ -12,6 +12,7 @@ public class PlayerController {
 
     CopyOnWriteArrayList<Player> listOfPlayers = new CopyOnWriteArrayList<>();
 
+    //------------------------------------------------------------------------------------------//
     @PostMapping
     public Player createPlayer(@RequestBody Player incomingPlayer) {
         listOfPlayers.add(incomingPlayer);
@@ -19,8 +20,23 @@ public class PlayerController {
 
     }
 
+    //------------------------------------------------------------------------------------------//
     @GetMapping
     public List<Player> getAllPlayer() {
         return listOfPlayers;
     }
+
+    //------------------------------------------------------------------------------------------//
+    @GetMapping(path = "/{id}")
+    public Player getSpecificPlayer(@PathVariable String id) {
+        Player existingPlayer = listOfPlayers.stream().filter(
+                (currPlayer) -> {
+                    return currPlayer.id.equals(id);
+
+                }
+        ).findFirst().get();
+        return existingPlayer;
+    }
+
+    //------------------------------------------------------------------------------------------//
 }
