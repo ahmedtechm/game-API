@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title> Game Changer </title>
+</head>
+
+<body>
+    <h1> List of Players </h1>
+
+    <ul id=" lop">
+        <li> Player One </li>
+        <li> Player Two </li>
+        <li> Player Three </li>
+    </ul>
+    <script>
+        let uiListOfPlayers = document.getElementById("lop");
+
+        fetch("http://localhost:8080/api/v1/player")
+            .then((response) => { return response.json() })
+            .then((parsedResponse) => {
+                parsedResponse.forEach(element => {
+                    let newListItem = document.createElement("li");
+                    newListItem.textContent = element.name;
+                    uiListOfPlayers.appendChild(newListItem);
+                });
+            }
+
+            )
+
+    </script>
+
+
+</body>
+
+</html>

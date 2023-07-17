@@ -8,6 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
 @RequestMapping(path = "/api/v1/player")
+@CrossOrigin("*")
 public class PlayerController {
 
     CopyOnWriteArrayList<Player> listOfPlayers = new CopyOnWriteArrayList<>();
