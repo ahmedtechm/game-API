@@ -7,15 +7,15 @@ fetch("http://localhost:8080/api/v1/player")
 
 parsedResponse.forEach(element =>{
     let newListItem = document.createElement("li"); 
-    newListItem.className = "card";
+    newListItem.className = "list-group-item";
 
 let listItemHeading = document.createElement("h3");
 listItemHeading.className = "card-title";
-listItemHeading.textContent = element.id;
+listItemHeading.textContent = "ID: " + element.id;
 
 let listItemPara = document.createElement("p");
 listItemPara.className = "card-description";
-listItemPara.textContent = element.name;
+listItemPara.textContent = "Name: " + element.name;
 
 newListItem.appendChild(listItemHeading);
 newListItem.appendChild(listItemPara);
