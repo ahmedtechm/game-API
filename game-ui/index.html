@@ -2,16 +2,37 @@
 
 <head>
     <title> Game Changer </title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        #lop {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #lop li {
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
     <h1 id="Welcome_message"> Welcome to the Game!!!</h1>
     <h2> List of Players </h2>
 
-    <ol id="lop">
-        <li> Player One </li>
-        <li> Player Two </li>
-        <li> Player Three </li>
-    </ol>
+    <ol id="lop"></ol>
         <script src="./dataFetcher.js"> </script>
 
 </body>

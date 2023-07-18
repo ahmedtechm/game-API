@@ -2,13 +2,27 @@ fetch("http://localhost:8080/api/v1/player")
 .then((response) => {return response.json()})
 .then((parsedResponse)=>{
     console.log(parsedResponse);
-let lopobj = document.getElementById("lop");
+    let lopobj = document.getElementById("lop");
+
 
 parsedResponse.forEach(element =>{
-    let newListItem = document.createElement("li");
-    newListItem.textContent = element.name;
-    lopobj.appendChild(newListItem);
+    let newListItem = document.createElement("li"); 
+    newListItem.className = "card";
 
-});
+let listItemHeading = document.createElement("h3");
+listItemHeading.className = "card-title";
+listItemHeading.textContent = element.id;
+
+let listItemPara = document.createElement("p");
+listItemPara.className = "card-description";
+listItemPara.textContent = element.name;
+
+newListItem.appendChild(listItemHeading);
+newListItem.appendChild(listItemPara);
+
+lopobj.appendChild(newListItem);
+
+
+    });
 
 })
