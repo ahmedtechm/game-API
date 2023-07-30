@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
@@ -19,7 +20,7 @@ public class PlayerController {
     //------------------------------------------------------------------------------------------//
     @PostMapping
     public Player createPlayer(@RequestBody Player incomingPlayer) {
-        listOfPlayers.add(incomingPlayer);
+        playerRepository.save(incomingPlayer);
         return incomingPlayer;
 
     }
@@ -27,34 +28,29 @@ public class PlayerController {
     //------------------------------------------------------------------------------------------//
     @GetMapping
     public List<Player> getAllPlayer() {
-        return listOfPlayers;
+        return playerRepository.findAll();
     }
 
     //------------------------------------------------------------------------------------------//
     @GetMapping(path = "/{id}")
-    public Player getSpecificPlayer(@PathVariable String id) {
-        Player existingPlayer = listOfPlayers.stream().filter(
-                (currPlayer) -> {
-                    return currPlayer.id.equals(id);
-
-                }
-        ).findFirst().get();
-        return existingPlayer;
+    public Optional<Player> getSpecificPlayer(@PathVariable String id) {
+        return playerRepository.findById(id);
     }
 
     //------------------------------------------------------------------------------------------//
     @PutMapping(path = "/{id}")
     public Player updateSpecificPlayer(@PathVariable String id, @RequestBody Player incomingPlayer) {
-        Player existingPlayer = getSpecificPlayer(id);
+        Player existingPlayer = getSpecificPlayer(id).get();
         existingPlayer.name = incomingPlayer.name;
+        playerRepository.save(existingPlayer);
         return existingPlayer;
     }
 
     //------------------------------------------------------------------------------------------//
     @DeleteMapping(path = "/{id}")
     public Player removeSpecificPlayer(@PathVariable String id) {
-        Player existingPlayer = getSpecificPlayer(id);
-        listOfPlayers.remove(existingPlayer);
+        Player existingPlayer = getSpecificPlayer(id).get();
+        playerRepository.delete(existingPlayer);
         return existingPlayer;
     }
 
