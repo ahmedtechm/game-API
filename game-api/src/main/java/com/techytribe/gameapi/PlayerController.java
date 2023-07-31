@@ -1,19 +1,16 @@
 package com.techytribe.gameapi;
 
-import org.apache.logging.log4j.spi.CopyOnWrite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @RestController
 @RequestMapping(path = "/api/v1/player")
 @CrossOrigin("*")
 public class PlayerController {
 
-    CopyOnWriteArrayList<Player> listOfPlayers = new CopyOnWriteArrayList<>();
     @Autowired
     public PlayerRepository playerRepository;
 
